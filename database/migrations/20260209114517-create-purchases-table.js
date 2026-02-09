@@ -3,21 +3,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.createTable("users", {
+		await queryInterface.createTable("purchases", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER
 			},
-			name: {
-				allowNull: true,
-				type: Sequelize.STRING(100)
-			},
-			username: {
+			dropId: {
 				allowNull: false,
-				type: Sequelize.STRING(100),
-				unique: true
+				type: Sequelize.INTEGER,
+				references: {
+					key: "id",
+					model: "drops"
+				},
+				onUpdate: "CASCADE",
+				onDelete: "CASCADE"
+			},
+			userId: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				references: {
+					key: "id",
+					model: "users"
+				},
+				onUpdate: "CASCADE",
+				onDelete: "CASCADE"
 			},
 			createdAt: {
 				allowNull: false,
@@ -31,6 +42,6 @@ module.exports = {
 	},
 
 	async down(queryInterface) {
-		await queryInterface.dropTable("users");
+		await queryInterface.dropTable("purchases");
 	}
 };
