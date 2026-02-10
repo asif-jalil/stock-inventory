@@ -44,11 +44,9 @@ module.exports = {
 			}
 		});
 
-		await queryInterface.addIndex("reservations", ["userId"], {
+		await queryInterface.addIndex("reservations", ["userId", "dropId"], {
 			unique: true
 		});
-
-		await queryInterface.addIndex("reservations", ["expiresAt"]);
 	},
 
 	async down(queryInterface) {
