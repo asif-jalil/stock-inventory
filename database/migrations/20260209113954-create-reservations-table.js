@@ -43,6 +43,12 @@ module.exports = {
 				type: Sequelize.DATE
 			}
 		});
+
+		await queryInterface.addIndex("reservations", ["userId"], {
+			unique: true
+		});
+
+		await queryInterface.addIndex("reservations", ["expiresAt"]);
 	},
 
 	async down(queryInterface) {

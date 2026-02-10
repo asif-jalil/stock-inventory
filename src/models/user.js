@@ -1,3 +1,5 @@
+const { makePaginate } = require("sequelize-cursor-pagination");
+
 module.exports = (sequelize, DataTypes) => {
 	const User = sequelize.define(
 		"user",
@@ -30,7 +32,19 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	User.associate = models => {};
+	User.associate = models => {
+		User.hasOne(models.reservation, {
+			foreignKey: "userId",
+			as: "reservation"
+		});
+
+		User.hasMany(models.purchase, {
+			foreignKey: "userId",
+			as: "purchases"
+		});
+	};
+
+	User.paginate = makePaginate(User);
 
 	return User;
 };

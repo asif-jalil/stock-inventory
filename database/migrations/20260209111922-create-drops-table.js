@@ -14,7 +14,7 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.STRING
 			},
-			price: {
+			unitPrice: {
 				allowNull: false,
 				type: Sequelize.DECIMAL(10, 2)
 			},
@@ -25,6 +25,16 @@ module.exports = {
 			availableStock: {
 				allowNull: false,
 				type: Sequelize.INTEGER
+			},
+			reservedStock: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				defaultValue: 0
+			},
+			dropStartAt: {
+				allowNull: false,
+				type: Sequelize.DATE,
+				defaultValue: Sequelize.NOW
 			},
 			createdAt: {
 				allowNull: false,

@@ -3,8 +3,10 @@ const path = require("path");
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("../../config/database");
 
+// @ts-ignore
 const basename = path.basename(module.filename);
 const models = {};
+// @ts-ignore
 const sequelize = new Sequelize(config);
 
 fs.readdirSync(__dirname)
