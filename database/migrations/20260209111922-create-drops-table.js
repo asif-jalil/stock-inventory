@@ -18,11 +18,11 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.DECIMAL(10, 2)
 			},
-			totalStock: {
+			offeringStock: {
 				allowNull: false,
 				type: Sequelize.INTEGER
 			},
-			availableStock: {
+			currentStock: {
 				allowNull: false,
 				type: Sequelize.INTEGER
 			},
@@ -30,11 +30,6 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.INTEGER,
 				defaultValue: 0
-			},
-			dropStartAt: {
-				allowNull: false,
-				type: Sequelize.DATE,
-				defaultValue: Sequelize.NOW
 			},
 			createdAt: {
 				allowNull: false,

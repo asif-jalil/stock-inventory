@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				type: DataTypes.DECIMAL(10, 2)
 			},
-			totalStock: {
+			offeringStock: {
 				allowNull: false,
 				type: DataTypes.INTEGER
 			},
-			availableStock: {
+			currentStock: {
 				allowNull: false,
 				type: DataTypes.INTEGER
 			},
@@ -31,9 +31,13 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.INTEGER,
 				defaultValue: 0
 			},
-			dropStartAt: {
-				allowNull: false,
-				type: DataTypes.DATE
+			availableStock: {
+				type: DataTypes.VIRTUAL(DataTypes.INTEGER),
+				get() {
+					const available = this.getDataValue("currentStock") || 0;
+					const reserved = this.getDataValue("reservedStock") || 0;
+					return available - reserved;
+				}
 			},
 			createdAt: {
 				allowNull: false,

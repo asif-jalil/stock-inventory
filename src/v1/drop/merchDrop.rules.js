@@ -9,7 +9,7 @@ export default [
 		.bail()
 		.isNumeric()
 		.withMessage("Unit price must be a number"),
-	body("totalStock")
+	body("offeringStock")
 		.not()
 		.isEmpty()
 		.withMessage("Total stock is required")
@@ -17,10 +17,5 @@ export default [
 		.isNumeric()
 		.withMessage("Total stock must be a number")
 		.isInt({ min: 1 })
-		.withMessage("Total stock must be equal or greater than 1"),
-	body("dropStartAt")
-		.optional({ values: "falsy" })
-		.isISO8601()
-		.withMessage("Drop start time must be a valid date")
-		.toDate()
+		.withMessage("Total stock must be equal or greater than 1")
 ];
