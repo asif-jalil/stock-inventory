@@ -9,8 +9,24 @@ export default asyncHandler(async (req, res) => {
 	const drops = await models.drop.paginate({
 		attributes: ["id", "name", "unitPrice", "availableStock", "reservedStock"],
 		where: { id: { [Op.gt]: after } },
-		limit
+		limit,
+		include: [
+			{
+				model: models.purchase,
+				as: "purchases",
+				attributes: ["id", "userId", "createdAt"],
+				limit: 3,
+				order: [["createdAt", "DESC"]],
+				include: [
+					{
+						model: models.user,
+						as: "user",
+						attributes: ["id", "name", "username"]
+					}
+				]
+			}
+		]
 	});
 
-	res.json({ drops });
+	res.json(drops);
 });
