@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { createServer } from "http";
 import app from "./app";
-// import socket from "./socket";
+import socket from "./socket";
 
 const server = createServer(app);
 
@@ -11,4 +11,4 @@ server.listen(API_PORT, () => {
 	console.log(`Api server is running at ${API_HOST}:${API_PORT}`);
 });
 
-// socket.init(server);
+socket.init(server);

@@ -4,14 +4,8 @@ import { StatusCodes } from "http-status-codes";
 
 const allowedOrigins = ["http://localhost:3000"];
 
-const getOrigin = req => {
-	const url = req.originalUrl;
-
-	if (url && url.startsWith("/v1/forms")) {
-		return true;
-	}
-
-	if (process.env.NODE_ENV === PRODUCTION) {
+const getOrigin = () => {
+	if (process.env.NODE_ENV !== PRODUCTION) {
 		return ["*"];
 	}
 
@@ -20,7 +14,7 @@ const getOrigin = req => {
 
 export default cors(function (req, callback) {
 	const options = {
-		origin: getOrigin(req),
+		origin: getOrigin(),
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 		allowedHeaders: [
 			"Accept",
