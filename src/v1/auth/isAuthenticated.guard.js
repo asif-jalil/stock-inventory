@@ -3,6 +3,9 @@ import UnauthenticatedError from "../error/Unauthenticated.error";
 import getReqAuthToken from "./token/getReqAuthToken.util";
 import verifyAuthToken from "./token/verifyAuthToken.util";
 
+/**
+ * This is a demo authentication. No real auth happened here
+ */
 export default async (req, res, next) => {
 	const authToken = getReqAuthToken(req);
 	let userId = 1;
