@@ -6,7 +6,7 @@ const allowedOrigins = ["http://localhost:3000"];
 
 const getOrigin = () => {
 	if (process.env.NODE_ENV !== PRODUCTION) {
-		return ["*"];
+		return true;
 	}
 
 	return allowedOrigins;

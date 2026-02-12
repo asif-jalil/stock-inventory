@@ -14,7 +14,6 @@ export async function handleRevertReserveStock(job) {
 		});
 
 		if (!reservation) {
-			console.warn(`Reservation with ID ${reservationId} not found`);
 			return false;
 		}
 
@@ -42,7 +41,8 @@ export async function handleRevertReserveStock(job) {
 
 		await publisher.notifyGlobal(event.STOCK_UPDATED, {
 			dropId: drop.id,
-			availableStock: drop.currentStock - drop.reservedStock
+			availableStock: drop.availableStock,
+			reservedStock: drop.reservedStock
 		});
 
 		return true;

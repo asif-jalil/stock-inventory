@@ -7,7 +7,14 @@ export default asyncHandler(async (req, res) => {
 	const limit = req.query.limit ?? 10;
 
 	const drops = await models.drop.paginate({
-		attributes: ["id", "name", "unitPrice", "availableStock", "reservedStock"],
+		attributes: [
+			"id",
+			"name",
+			"unitPrice",
+			"currentStock",
+			"availableStock",
+			"reservedStock"
+		],
 		where: { id: { [Op.gt]: after } },
 		limit,
 		include: [

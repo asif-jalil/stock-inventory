@@ -34,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
 			availableStock: {
 				type: DataTypes.VIRTUAL(DataTypes.INTEGER),
 				get() {
-					const available = this.getDataValue("currentStock") || 0;
-					const reserved = this.getDataValue("reservedStock") || 0;
+					const available = this.getDataValue("currentStock");
+					const reserved = this.getDataValue("reservedStock");
 					return available - reserved;
 				}
 			},

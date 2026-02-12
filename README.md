@@ -8,8 +8,9 @@ Provides backend for stock inventory
 
 ## Technologies
 
-- NodeJS
+- NodeJS > 18
 - PostgreSQL
+- Redis
 
 ## How to
 

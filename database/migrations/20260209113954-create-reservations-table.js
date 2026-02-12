@@ -47,6 +47,10 @@ module.exports = {
 		await queryInterface.addIndex("reservations", ["userId", "dropId"], {
 			unique: true
 		});
+
+		await queryInterface.addIndex("reservations", ["userId"], {
+			unique: true
+		});
 	},
 
 	async down(queryInterface) {

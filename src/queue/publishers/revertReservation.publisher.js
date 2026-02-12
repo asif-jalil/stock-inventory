@@ -7,7 +7,7 @@ export function publishRevertReservation(data, opts = {}) {
 	return backgroundQueue.add(RESERVATION_JOBS.REVERT_RESERVATION, data, {
 		attempts: 5,
 		backoff: { type: "exponential", delay: 1000 },
-		removeOnComplete: true,
+		removeOnComplete: false,
 		removeOnFail: 1000,
 		delay: 60_000,
 		...opts

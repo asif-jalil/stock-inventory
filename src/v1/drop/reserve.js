@@ -11,13 +11,13 @@ export default asyncHandler(async (req, res) => {
 	const userId = req.user.id;
 
 	const existingReservation = await models.reservation.findOne({
-		where: { dropId, userId }
+		where: { userId }
 	});
 
 	if (existingReservation) {
 		res
 			.status(StatusCodes.BAD_REQUEST)
-			.json({ message: "User already has a reservation for this drop" });
+			.json({ message: "User already has a reservation" });
 		return;
 	}
 
@@ -53,7 +53,8 @@ export default asyncHandler(async (req, res) => {
 
 		await publisher.notifyGlobal(event.STOCK_UPDATED, {
 			dropId: drop.id,
-			availableStock: drop.availableStock - 1
+			availableStock: drop.availableStock,
+			reservedStock: drop.reservedStock
 		});
 
 		await publishRevertReservation({
@@ -63,7 +64,11 @@ export default asyncHandler(async (req, res) => {
 
 		res.status(StatusCodes.ACCEPTED).json({
 			reservation,
-			drop: { id: drop.id, availableStock: available - 1 }
+			drop: {
+				id: drop.id,
+				name: drop.name,
+				unitPrice: drop.unitPrice
+			}
 		});
 		return;
 	} catch (error) {

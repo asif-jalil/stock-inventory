@@ -1,10 +1,14 @@
 import { Router } from "express";
 import isAuthenticatedGuard from "../auth/isAuthenticated.guard";
 import reservation from "./reservation";
+import cancel from "./cancel";
 
-const userRoutes = Router({ mergeParams: true });
+const reservationRoutes = Router({ mergeParams: true });
 
 // Get drops
-userRoutes.get("/me", isAuthenticatedGuard, reservation);
+reservationRoutes.get("/me", isAuthenticatedGuard, reservation);
 
-export default userRoutes;
+// Cancel reservation
+reservationRoutes.delete("/me", isAuthenticatedGuard, cancel);
+
+export default reservationRoutes;

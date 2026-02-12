@@ -56,7 +56,7 @@ export default asyncHandler(async (req, res) => {
 
 		await models.purchase.create(
 			{
-				dropId,
+				dropId: drop.id,
 				userId
 			},
 			{ transaction: t }
@@ -75,16 +75,15 @@ export default asyncHandler(async (req, res) => {
 
 		drop = await drop.reload();
 
-		const availableStock = drop.currentStock - drop.reservedStock;
-
 		await publisher.notifyGlobal(event.STOCK_UPDATED, {
-			dropId,
-			availableStock
+			dropId: drop.id,
+			availableStock: drop.availableStock,
+			reservedStock: drop.reservedStock
 		});
 
 		res.status(StatusCodes.CREATED).json({
-			dropId,
-			availableStock
+			dropId: drop.id,
+			availableStock: drop.availableStock
 		});
 	} catch (error) {
 		await t.rollback();
