@@ -1,4 +1,4 @@
-const { TEST } = require("./nodeEnvironments");
+const { TEST, DEVELOPMENT } = require("./nodeEnvironments");
 
 if (process.env.NODE_ENV === TEST) {
 	require("dotenv").config({ path: "./.env.test" });
@@ -6,12 +6,16 @@ if (process.env.NODE_ENV === TEST) {
 	require("dotenv").config();
 }
 
+const isDev = process.env.NODE_ENV === DEVELOPMENT;
+
 module.exports = {
 	dialect: process.env.DB_CONNECTION,
 	dialectOptions: {
-		ssl: {
-			require: true
-		},
+		ssl: !isDev
+			? {
+					require: true
+				}
+			: false,
 		supportBigNumbers: true
 	},
 	database: process.env.DB_DATABASE,

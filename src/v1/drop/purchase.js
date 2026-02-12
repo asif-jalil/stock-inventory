@@ -54,7 +54,7 @@ export default asyncHandler(async (req, res) => {
 			return;
 		}
 
-		await models.purchase.create(
+		const purchase = await models.purchase.create(
 			{
 				dropId: drop.id,
 				userId
@@ -81,10 +81,7 @@ export default asyncHandler(async (req, res) => {
 			reservedStock: drop.reservedStock
 		});
 
-		res.status(StatusCodes.CREATED).json({
-			dropId: drop.id,
-			availableStock: drop.availableStock
-		});
+		res.status(StatusCodes.CREATED).json(purchase);
 	} catch (error) {
 		await t.rollback();
 
