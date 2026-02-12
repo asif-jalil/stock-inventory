@@ -6,6 +6,14 @@ Provides backend for stock inventory
 
 [Asif](https://asif.pw)
 
+## URL & Credential
+
+- Visit - https://newstockinventory.vercel.app
+- Bull mq dashboard - https://stock-inventory.up.railway.app/admin/queues
+- Bull mq credential
+  - user: admin
+  - password: bull@1234
+
 ## Technologies
 
 - NodeJS > 18
