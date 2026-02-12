@@ -12,6 +12,16 @@ Provides backend for stock inventory
 - PostgreSQL
 - Redis
 
+# Development setup
+
+- Clone repository
+- Create a `.env` file and copy content from `.env.example`
+- Change the variables according to your need
+- Run `npm install`
+- Run `db:migrate` for migrate all files
+- Run `db:seed` only if you need demo users
+- Run `npm start` for server and `npm run consumers` for queues
+
 ## How to
 
 - Run on local machine : `npm start`
