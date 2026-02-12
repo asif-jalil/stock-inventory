@@ -9,6 +9,9 @@ if (process.env.NODE_ENV === TEST) {
 module.exports = {
 	dialect: process.env.DB_CONNECTION,
 	dialectOptions: {
+		ssl: {
+			require: true
+		},
 		supportBigNumbers: true
 	},
 	database: process.env.DB_DATABASE,

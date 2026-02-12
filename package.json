@@ -2,7 +2,7 @@
 	"name": "stock-inventory",
 	"version": "1.0.0",
 	"description": "",
-	"main": "dist/app.js",
+	"main": "dist/server.js",
 	"scripts": {
 		"start": "babel-watch src/server.js",
 		"sandbox": "babel-watch src/sandbox.js",
